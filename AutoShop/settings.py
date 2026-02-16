@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.cart',
     'apps.contact',
+    'apps.order',
     'apps.partners',
     'apps.product',
     'apps.users',
