@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
+{% load static %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -14,10 +14,10 @@
     ========================= -->
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="assets/css/plugins.css">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
     
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
 </head>
 
@@ -3254,10 +3254,10 @@
 ============================================ -->
 
 <!-- Plugins JS -->
-<script src="assets/js/plugins.js"></script>
+<script src="{% static 'assets/js/plugins.js' %}"></script>
 
 <!-- Main JS -->
-<script src="assets/js/main.js"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 
 

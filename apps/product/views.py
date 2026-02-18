@@ -1,10 +1,21 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.db.models import Prefetch
 
 from .models import Category, Product,ProductVariant, Review
+
+
+class HomeView(TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.filter(
+            is_active=True, parent__isnull=True)[:8]
+        context['products'] = Product.objects.filter(is_available=True)[:8]
+        return context
 
 
 class CategoryListView(ListView):
