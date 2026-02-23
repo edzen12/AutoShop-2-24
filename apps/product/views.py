@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
-from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.db.models import Prefetch
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy 
 
-from .models import Category, Product,ProductVariant, Review
+from .models import Category, Product, Review
+from apps.blog.models import Post
+from apps.partners.models import Partner
 
 
 class HomeView(TemplateView):
@@ -15,6 +16,10 @@ class HomeView(TemplateView):
         context['categories'] = Category.objects.filter(
             is_active=True, parent__isnull=True)[:8]
         context['products'] = Product.objects.filter(is_available=True)[:8]
+        context['partners'] = Partner.objects.all()
+        context['posts'] = (
+            Post.objects.prefetch_related('tags')
+        )
         return context
 
 
