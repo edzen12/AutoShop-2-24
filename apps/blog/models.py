@@ -17,6 +17,10 @@ class Tag(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+    
+    class Meta:
+        verbose_name_plural = 'Теги'
+        verbose_name = 'тег'
 
 
 class Post(models.Model):
@@ -37,3 +41,7 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'Посты'
+        verbose_name = 'пост'

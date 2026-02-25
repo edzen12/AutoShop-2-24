@@ -124,6 +124,10 @@ class ProductVariant(models.Model):
 
     def __str__(self):
         return f"{self.product.name} {self.sku}"
+    
+    class Meta:
+        verbose_name_plural = 'вариант товара'
+        verbose_name = 'Варианты товаров'
 
 
 class Review(models.Model):
@@ -142,3 +146,17 @@ class Review(models.Model):
     class Meta:
         verbose_name_plural = 'Отзывы'
         verbose_name = 'отзыв'
+
+
+class Slider(models.Model):
+    big_title = models.CharField(verbose_name="Большое название", max_length=100)
+    little_title = models.CharField(verbose_name="Мелкие текста", max_length=100)
+    img = models.ImageField(upload_to='slider/')
+    link = models.CharField(max_length=255, verbose_name="Ссылка")
+
+    def __str__(self):
+        return self.big_title
+    
+    class Meta:
+        verbose_name = 'слайдер'
+        verbose_name_plural = 'Слайдер'

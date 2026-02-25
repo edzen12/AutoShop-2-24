@@ -1,6 +1,8 @@
 from django.contrib import admin
 from apps.product.models import *
 
+admin.site.register(Slider)
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent', 'is_active')
@@ -56,3 +58,4 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('product','user', 'rating', 'created_at')
     list_filter = ('rating',)
     search_fields = ('product__name','user__username') 
+
