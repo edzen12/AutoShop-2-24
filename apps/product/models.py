@@ -1,18 +1,22 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
+from mptt.models import MPTTModel, TreeForeignKey
 
 User = get_user_model()
 
-class Category(models.Model):
+class Category(MPTTModel):
     name = models.CharField(max_length=150, verbose_name="Название категории")
     slug = models.SlugField(unique=True)
-    parent = models.ForeignKey(
+    parent = TreeForeignKey(
         'self', on_delete=models.CASCADE,
         null=True, blank=True,
         related_name='children',
     )
     is_active = models.BooleanField(default=True, verbose_name="Активация")
+
+    class MPTTMeta:
+        order_insertion_by = ['name']
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -1,14 +1,26 @@
 from django.contrib import admin
 from apps.product.models import *
+from mptt.admin import DraggableMPTTAdmin
+from django.utils.html import format_html
 
 admin.site.register(Slider)
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent', 'is_active')
+class CategoryAdmin(DraggableMPTTAdmin):
+    list_display = ('tree_actions', 'something', 'is_active')
+    list_display_links=('something',)
     list_filter = ('is_active',)
     search_fields = ('name',)
+    mptt_level_indent = 20
     prepopulated_fields = {'slug': ('name',)}
+
+    def something(self, instance):
+        return format_html(
+            '<div style="text-indent:{}px">{}</div>',
+            instance._mpttfield('level') * self.mptt_level_indent,
+            instance.name, 
+        )
+    something.short_description = ('Все категории')
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
