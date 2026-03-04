@@ -1,3 +1,7 @@
 from django.contrib import admin
+from apps.contact.models import (
+    ContactPage, ContactRequest)
 
-# Register your models here.
+
+admin.site.register(ContactPage)
+admin.site.register(ContactRequest)

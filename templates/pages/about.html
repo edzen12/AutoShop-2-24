@@ -9,8 +9,8 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index.html">home</a></li>
-                            <li>about us</li>
+                            <li><a href="{% url "home" %}">Главная</a></li>
+                            <li>{{about.title}}</li>
                         </ul>
                     </div>
                 </div>
@@ -68,21 +68,21 @@
             <!--services img area-->
             <div class="about_gallery_section mb-55"> 
                 <div class="row">
-
+                        {% for blog in blogAbout %}
                         <div class="col-lg-4 col-md-4">
                             <article class="single_gallery_section">
                                 <figure>
-                                    <div class="gallery_thumb">
-                                        <img src="assets/img/about/about2.jpg" alt="">
+                                    <div class="gallery_thumb" style="height:250px">
+                                        <img src="{{blog.img.url}}" style="height:100%; object-fit:cover" alt="">
                                     </div>
                                     <figcaption class="about_gallery_content">
-                                       <h3>What do we do?</h3>
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
+                                       <h3>{{blog.title}}</h3>
+                                        <p>{{blog.desc|truncatewords:10}}</p>
                                     </figcaption>
                                 </figure>
                             </article>
                         </div>
-                        
+                        {% endfor %}
                     </div>   
             </div>
             <!--services img end-->    
@@ -92,134 +92,50 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="faq-client_title">
-                            <h2>What can we do for you ?</h2>
+                            <h2>Вопросы/Ответы</h2>
                         </div>
                         <div class="faq-style-wrap" id="faq-five">
-
+                            {% for fa in faq %}
                             <!-- Panel-default -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a id="octagon" class="collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse1" aria-expanded="true" aria-controls="faq-collapse1"> <span class="button-faq"></span>Fast Free Delivery</a>
+                                        <a id="octagon" class="collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse1" aria-expanded="true" aria-controls="faq-collapse1"> <span class="button-faq"></span>{{fa.title}}</a>
                                     </h5>
                                 </div>
                                 <div id="faq-collapse1" class="collapse show" aria-expanded="true" role="tabpanel" data-bs-parent="#faq-five">
                                     <div class="panel-body">
-                                        <p>Nam liber tempor cum soluta nobis eleifend option.</p>
-                                        <p>Congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me.
-                                        </p>
-                                        <p> Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
+                                        <p>{{fa.desc}}</p>
                                     </div>
                                 </div>
                             </div>
                             <!--// Panel-default -->
-                            
-
-                            <!-- Panel-default -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a class="collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse2" aria-expanded="false" aria-controls="faq-collapse2"> <span class="button-faq"></span>More Than 30 Years In The Business</a>
-                                    </h5>
-                                </div>
-                                <div id="faq-collapse2" class="collapse" aria-expanded="false" role="tabpanel" data-bs-parent="#faq-five">
-                                    <div class="panel-body">
-                                        <p>Nam liber tempor cum soluta nobis eleifend option.</p>
-                                        <p>Congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me.
-                                        </p>
-                                        <p> Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--// Panel-default -->
-
-                            <!-- Panel-default -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a class="collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse3" aria-expanded="false" aria-controls="faq-collapse3"> <span class="button-faq"></span>100% Organic Foods</a>
-                                    </h5>
-                                </div>
-                                <div id="faq-collapse3" class="collapse" role="tabpanel" data-bs-parent="#faq-five">
-                                    <div class="panel-body">
-                                        <p>Nam liber tempor cum soluta nobis eleifend option.</p>
-                                        <p>Congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me.
-                                        </p>
-                                        <p> Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--// Panel-default -->
-
-                            <!-- Panel-default -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a class="collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse4" aria-expanded="false" aria-controls="faq-collapse4"> <span class="button-faq"></span>Best Shopping Strategies</a>
-                                    </h5>
-                                </div>
-                                <div id="faq-collapse4" class="collapse" role="tabpanel" data-bs-parent="#faq-five">
-                                    <div class="panel-body">
-                                        <p>Nam liber tempor cum soluta nobis eleifend option.</p>
-                                        <p>Congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me.
-                                        </p>
-                                        <p> Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--// Panel-default -->
+                            {% endfor %}
                         </div>
 
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="testimonials-area">
                             <div class="faq-client_title">
-                                <h2>What Our Customers Says ?</h2>
+                                <h2>Отзывы клиентов</h2>
                             </div>
+                            {% for testi in testimonials %}
                             <div class="testimonial-two owl-carousel">
                                 <div class="testimonial-wrap-two text-center">
-                                        <div class="quote-container">
-                                            <div class="quote-image">
-                                                <img src="assets/img/about/testimonial1.jpg" alt="">
-                                            </div>
-                                            <div class="testimonials-text">
-                                                <p>Support and response has been amazing, helping me with several issues I came across and got them solved almost the same day. A pleasure to work with them!</p>
-                                            </div>
-                                            <div class="author">
-                                                <h6>Kathy Young</h6>
-                                                <p>CEO of SunPark</p>
-                                            </div>
-                                            
+                                    <div class="quote-container">
+                                        <div class="quote-image">
+                                            <img src="{{testi.avatar.url}}" alt="">
                                         </div>
-                                    </div>
-                                <div class="testimonial-wrap-two text-center">
-                                        <div class="quote-container">
-                                            <div class="quote-image">
-                                                <img src="assets/img/about/testimonial2.jpg" alt="">
-                                            </div>
-                                            <div class="testimonials-text">
-                                                <p>Support and response has been amazing, helping me with several issues I came across and got them solved almost the same day. A pleasure to work with them!</p>
-                                            </div>
-                                            <div class="author">
-                                                <h6>Kathy Young</h6>
-                                                <p>CEO of SunPark</p>
-                                            </div>
+                                        <div class="testimonials-text">
+                                            <p>{{testi.desc}}</p>
                                         </div>
+                                        <div class="author">
+                                            <h6>{{testi.name}}</h6>
+                                            <p>{{testi.position}}</p>
+                                        </div> 
                                     </div>
-                                <div class="testimonial-wrap-two text-center">
-                                        <div class="quote-container">
-                                            <div class="quote-image">
-                                                <img src="assets/img/about/testimonial3.jpg" alt="">
-                                            </div>
-                                            <div class="testimonials-text">
-                                                <p>Support and response has been amazing, helping me with several issues I came across and got them solved almost the same day. A pleasure to work with them!</p>
-                                            </div>
-                                            <div class="author">
-                                                <h6>Kathy Young</h6>
-                                                <p>CEO of SunPark</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

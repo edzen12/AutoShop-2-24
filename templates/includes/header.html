@@ -76,13 +76,7 @@
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
                             <li class="menu-item-has-children active">
-                                <a href="index.html#">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Home 1</a></li>
-                                    <li><a href="index-2.html">Home 2</a></li>
-                                    <li><a href="index-3.html">Home 3</a></li>
-                                    <li><a href="index-4.html">Home 4</a></li>
-                                </ul>
+                                <a href="{% url "home" %}">Главная</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="index.html#">Shop</a>
@@ -151,7 +145,7 @@
                                 <a href="{% url "about" %}">О нас</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="contact.html"> Contact Us</a> 
+                                <a href="{% url "contact" %}">Контакты</a> 
                             </li>
                         </ul>
                     </div>
@@ -463,14 +457,7 @@
                         <div class="main_menu menu_position text-left"> 
                             <nav>  
                                 <ul>
-                                    <li><a class="active"  href="index.html">home<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu">
-                                            <li><a href="index.html">Home shop 1</a></li>
-                                            <li><a href="index-2.html">Home shop 2</a></li>
-                                            <li><a href="index-3.html">Home shop 3</a></li>
-                                            <li><a href="index-4.html">Home shop 4</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a class="active"  href="{% url "home" %}">Главная</a></li>
                                     <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a> 
                                         <div class="mega_menu">
                                             <ul class="mega_menu_inner">
@@ -527,7 +514,7 @@
                                     </li>
 
                                     <li><a href="{% url "about" %}">О нас</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
+                                    <li><a href="{% url "contact" %}">Контакты</a></li>
                                 </ul>  
                             </nav> 
                         </div>
