@@ -3,6 +3,21 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Название")
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name 
+    
+    def get_absolute_url(self):
+        return reverse("category_post", kwargs={"slug": self.slug})
+    
+    class Meta:
+        verbose_name_plural = 'Категории'
+        verbose_name = 'категория'
+
+
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name="Название")
     slug = models.SlugField(unique=True)
@@ -24,6 +39,10 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE,
+        null=True, verbose_name="Категория"
+    )
     tags = models.ManyToManyField(Tag, related_name='posts', verbose_name="Теги")
     title = models.CharField(max_length=100, verbose_name="Название")
     img = models.ImageField(upload_to='posts/', verbose_name="Фото")
