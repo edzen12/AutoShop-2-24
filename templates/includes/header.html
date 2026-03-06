@@ -115,15 +115,7 @@
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="index.html#">blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog.html">blog</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                    <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                    <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                    <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                                </ul>
-
+                                <a href="{% url "blog" %}">Блог</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="index.html#">pages </a>
@@ -492,14 +484,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu pages">
-                                            <li><a href="blog-details.html">blog details</a></li>
-                                            <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                            <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{% url "blog" %}">Блог</a></li>
                                     <li><a href="index.html#">pages <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="about.html">About Us</a></li>
