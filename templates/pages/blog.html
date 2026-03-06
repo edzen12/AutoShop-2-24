@@ -9,8 +9,8 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li>blog</li>
+                        <li><a href="{% url "home" %}">Главная</a></li>
+                        <li>Блог</li>
                     </ul>
                 </div>
             </div>
@@ -27,145 +27,35 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="blog_wrapper mb-30">
                         <div class="blog_header">
-                            <h1>Blog</h1>
+                            <h1>Наш блог</h1>
                         </div>
                         <div class="blog_wrapper_inner">
+                            {% for post in posts %}
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blogpage1.jpg" alt=""></a>
+                                        <a href="{% url "post_detail" post.slug %}">
+                                            <img src="{{post.img.url}}" alt="">
+                                        </a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="blog-details.html">Blog image post (sticky)</a></h4>
+                                        <h4 class="post_title">
+                                            <a href="{% url "post_detail" post.slug %}">{{post.title}}</a>
+                                        </h4>
                                         <div class="blog_meta">                                        
-                                            <span class="author">Posted by : <a href="blog.html#">admin</a> / </span>
-                                            <span class="meta_date">Posted on :  <a href="blog.html#">July 05, 2022</a></span>
+                                            <span class="author">Автор: <a href="blog.html#">{{user.username}}</a> / </span>
+                                            <span class="meta_date">Дата: <a href="blog.html#">{{post.created_at}}</a></span>
                                         </div>
                                         <div class="blog_desc">
-                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et metus pharetra, bibendum massa nec, fermentum odio. Nunc id leo ultrices, mollis ligula in, finibus tortor. Mauris perferendis officia, nihil molestiae!</p>
+                                            <p>{{post.desc}}</p>
                                         </div>
                                         <footer class="btn_more">
-                                            <a href="blog-details.html"> Read more</a>
+                                            <a href="{% url "post_detail" post.slug %}">Читать далее</a>
                                         </footer>
                                     </figcaption>
                                 </figure>
                             </article>
-                            <article class="single_blog single_blog_gallery">
-                                <figure>
-                                    <div class="blog_thumb blog_thumb_active owl-carousel">
-                                        <div class="single_blog_thumb">
-                                            <a href="blog.html#"><img src="assets/img/blog/blogpage2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="single_blog_thumb">
-                                            <a href="blog.html#"><img src="assets/img/blog/blogpage1.jpg" alt=""></a>
-                                        </div>
-                                        <div class="single_blog_thumb">
-                                            <a href="blog.html#"><img src="assets/img/blog/blogpage3.jpg" alt=""></a>
-                                        </div>
-                                        <div class="single_blog_thumb">
-                                            <a href="blog.html#"><img src="assets/img/blog/blogpage4.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                    <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="blog-details.html">Post with Gallery</a></h4>
-                                        <div class="blog_meta">                                        
-                                            <span class="author">Posted by : <a href="blog.html#">admin</a> / </span>
-                                            <span class="meta_date">Posted on :  <a href="blog.html#">July 05, 2022</a></span>
-                                        </div>
-                                        <div class="blog_desc">
-                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et metus pharetra, bibendum massa nec, fermentum odio. Nunc id leo ultrices, mollis ligula in, finibus tortor. Mauris perferendis officia, nihil molestiae!</p>
-                                        </div>
-                                        <footer class="btn_more">
-                                            <a href="blog-details.html"> Read more</a>
-                                        </footer>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                            <article class="single_blog">
-                                <figure>
-                                    <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blogpage3.jpg" alt=""></a>
-                                    </div>
-                                    <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="blog-details.html">Post with Audio</a></h4>
-                                        <div class="blog_meta">                                        
-                                            <span class="author">Posted by : <a href="blog.html#">admin</a> / </span>
-                                            <span class="meta_date">Posted on :  <a href="blog.html#">July 05, 2022</a></span>
-                                        </div>
-                                        <div class="blog_aduio_icone">
-                                            <audio controls>
-                                                <source src="https://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3?1" type="audio/mp3">
-                                            </audio>
-                                        </div>
-                                        <div class="blog_desc">
-                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et is </p>
-                                        </div>
-                                        <footer class="btn_more">
-                                            <a href="blog-details.html"> Read more</a>
-                                        </footer>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                            <article class="single_blog blog_bidio">
-                                <figure>
-                                    <div class="blog_thumb">
-                                        <iframe src="https://www.youtube.com/embed/2Zt8va_6HRk"  allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    </div>
-                                    <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="blog-details.html">Post with Video</a></h4>
-                                        <div class="blog_meta">                                        
-                                            <span class="author">Posted by : <a href="blog.html#">admin</a> / </span>
-                                            <span class="meta_date">Posted on :  <a href="blog.html#">July 05, 2022</a></span>
-                                        </div>
-                                        <div class="blog_desc">
-                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et metus pharetra, bibendum massa nec, fermentum odio. Nunc id leo ultrices, mollis ligula in, finibus tortor. Mauris perferendis officia, nihil molestiae!</p>
-                                        </div>
-                                        <footer class="btn_more">
-                                            <a href="blog-details.html"> Read more</a>
-                                        </footer>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                            <article class="single_blog">
-                                <figure>
-                                    <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blogpage4.jpg" alt=""></a>
-                                    </div>
-                                    <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="blog-details.html">Maecenas ultricies</a></h4>
-                                        <div class="blog_meta">                                        
-                                            <span class="author">Posted by : <a href="blog.html#">admin</a> / </span>
-                                            <span class="meta_date">Posted on :  <a href="blog.html#">July 05, 2022</a></span>
-                                        </div>
-                                        <div class="blog_desc">
-                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et metus pharetra, bibendum massa nec, fermentum odio. Nunc id leo ultrices, mollis ligula in, finibus tortor. Mauris perferendis officia, nihil molestiae!</p>
-                                        </div>
-                                        <footer class="btn_more">
-                                            <a href="blog-details.html"> Read more</a>
-                                        </footer>
-                                    </figcaption>
-                                </figure>
-                            </article>
-                            <article class="single_blog">
-                                <figure>
-                                    <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blogpage5.jpg" alt=""></a>
-                                    </div>
-                                    <figcaption class="blog_content">
-                                        <h4 class="post_title"><a href="blog-details.html">Praesent imperdiet</a></h4>
-                                        <div class="blog_meta">                                        
-                                            <span class="author">Posted by : <a href="blog.html#">admin</a> / </span>
-                                            <span class="meta_date">Posted on :  <a href="blog.html#">July 05, 2022</a></span>
-                                        </div>
-                                        <div class="blog_desc">
-                                            <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex. Aenean posuere libero eu augue condimentum rhoncus. Praesent ornare tortor ac ante egestas hendrerit. Aliquam et metus pharetra, bibendum massa nec, fermentum odio. Nunc id leo ultrices, mollis ligula in, finibus tortor. Mauris perferendis officia, nihil molestiae!</p>
-                                        </div>
-                                        <footer class="btn_more">
-                                            <a href="blog-details.html"> Read more</a>
-                                        </footer>
-                                    </figcaption>
-                                </figure>
-                            </article>
+                            {% endfor %}
                         </div>
                     </div>
                         <!--blog pagination area start-->
