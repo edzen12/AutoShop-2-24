@@ -2,8 +2,11 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 from mptt.models import MPTTModel, TreeForeignKey
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db.models import Q, UniqueConstraint
 
 User = get_user_model()
+
 
 class Category(MPTTModel):
     name = models.CharField(max_length=150, verbose_name="Название категории")
@@ -44,14 +47,34 @@ class Brand(models.Model):
         verbose_name = 'бренд'
 
 
+class CarModel(models.Model):
+    brand = models.ForeignKey(
+        Brand, on_delete=models.CASCADE, 
+        related_name='models', verbose_name="Бренд"
+    )
+    name = models.CharField(max_length=100, verbose_name="Модель авто")
+    generation = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name="Поколение"
+    )
+    year_from = models.PositiveIntegerField(
+        verbose_name="Год выпуска", blank=True, null=True
+    )
+
+    def __str__(self):
+        return f"{self.brand.name} {self.name} {self.generation or ''}"
+    
+    class Meta:
+        verbose_name_plural = 'Модель авто'
+        verbose_name = 'модель авто'
+
+
 class Product(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE,
         related_name='products'
     )
-    brand = models.ForeignKey(
-        Brand, on_delete=models.SET_NULL,
-        related_name='products', blank=True, null=True
+    car_models = models.ManyToManyField(
+        CarModel, related_name='products', verbose_name="Модель авто"
     )
     name = models.CharField(max_length=150, verbose_name="Название товара")
     slug = models.SlugField(unique=True)
@@ -60,6 +83,12 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_main_image(self):
+        return self.images.filter(is_main=True).first()
+
+    def get_second_image(self):
+        return self.images.filter(is_main=False).first()
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -85,13 +114,30 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.product.name
     
+    def save(self, *args, **kwargs):
+        if self.is_main:
+            ProductImage.objects.filter(
+                product=self.product,
+                is_main=True
+            ).exclude(pk=self.pk).update(is_main=False)
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name_plural = 'Фото товаров'
         verbose_name = 'Фото товара'
+        constraints = [
+            UniqueConstraint(
+                fields=['product'],
+                condition=Q(is_main=True),
+                name='unique_main_image_per_product'
+            )
+        ]
 
 
 class Attribute(models.Model):
     name = models.CharField(verbose_name="Название", max_length=100)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name 
@@ -132,6 +178,7 @@ class ProductVariant(models.Model):
     class Meta:
         verbose_name_plural = 'вариант товара'
         verbose_name = 'Варианты товаров'
+        unique_together = ['product', 'sku']
 
 
 class Review(models.Model):
@@ -140,7 +187,9 @@ class Review(models.Model):
         related_name='reviews'
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField()
+    rating = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

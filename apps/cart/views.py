@@ -1,7 +1,6 @@
 from django.views import View 
 from django.views.generic import ListView, DeleteView
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
 
 from apps.cart.models import CartItem
 from apps.product.models import Product

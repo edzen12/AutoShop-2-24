@@ -39,7 +39,7 @@ class ProductVariantInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'name', 'category', 'brand', 'price', 'stock', 
+        'name', 'category',  'price', 'stock', 
         'is_available', 'created_at'
     )
     list_filter = ('is_available', 'category')

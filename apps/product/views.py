@@ -1,11 +1,32 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.db.models import Prefetch, Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy 
 
-from .models import Category, Product, Review, Slider
+from apps.product.models import Category, Product, Review, Slider
 from apps.blog.models import Post
 from apps.partners.models import Partner
+
+
+class SearchView(ListView):
+    template_name = 'pages/search.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if not query:
+            return Product.objects.none()
+        return Product.objects.filter(
+            Q(name__icontains=query) |
+            Q(category__name__icontains=query)
+        ).distinct().prefetch_related('images')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q')
+        return context 
+    
+
 
 
 class HomeView(TemplateView):
