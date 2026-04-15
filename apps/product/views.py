@@ -1,11 +1,41 @@
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views import View
 from django.db.models import Prefetch, Q
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy 
 
-from apps.product.models import Category, Product, Review, Slider
+from apps.product.utils import get_wishlist
+from apps.product.models import Category, Product, Review, Slider, WishlistItem
 from apps.blog.models import Post
 from apps.partners.models import Partner
+
+
+class WishlistView(TemplateView):
+    template_name = 'pages/wishlist.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        wishlist = get_wishlist(self.request)
+        context['wishlist'] = wishlist
+        return context 
+
+
+class ToggleWishlistView(View):
+    def post(self, request, product_id):
+        wishlist = get_wishlist(request)
+        product = get_object_or_404(Product, id=product_id)
+        item = WishlistItem.objects.filter(
+            wishlist=wishlist, 
+            product=product_id
+        ).first()
+        if item:
+            item.delete()
+        else:
+            WishlistItem.objects.create(
+                wishlist=wishlist, 
+                product=product
+            )
+        return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class SearchView(ListView):

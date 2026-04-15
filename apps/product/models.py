@@ -213,3 +213,27 @@ class Slider(models.Model):
     class Meta:
         verbose_name = 'слайдер'
         verbose_name_plural = 'Слайдер'
+
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='wishlist',
+        null=True, blank=True
+    )
+    session_key = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return f"Избранное {self.id}"
+    
+    def total_items(self):
+        return self.items.count()
+    
+
+class WishlistItem(models.Model):
+    wishlist = models.ForeignKey(
+        Wishlist, on_delete=models.CASCADE, related_name='items'
+    )
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('wishlist', 'product')
