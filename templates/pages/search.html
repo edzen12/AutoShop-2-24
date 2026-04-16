@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container">
+    <h2>Поиск по запросу: {{query}}</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-4">
+            {% if product.get_main_image %}
+            <img src="{{product.get_main_image.image.url}}" width="200px">
+            {% endif %}
+            <h3>{{product.name}}</h3>
+            <p>{{product.price}} сом</p>
+        </div>
+        {% empty %}
+        <p>Ничего не найдено</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
