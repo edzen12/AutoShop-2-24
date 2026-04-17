@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy 
 
 from apps.product.utils import get_wishlist
-from apps.product.models import Category, Product, Review, Slider, WishlistItem
+from apps.product.models import Category, Product, Review, Brand, Slider, WishlistItem
 from apps.blog.models import Post
 from apps.partners.models import Partner
 
@@ -75,13 +75,43 @@ class HomeView(TemplateView):
         return context
 
 
-class CategoryListView(ListView):
-    model = Category
-    template_name = 'product/category_list.html'
-    context_object_name = 'categories'
+class CategoryView(ListView):
+    template_name = 'pages/category.html'
+    context_object_name = 'products'
 
     def get_queryset(self):
-        return Category.objects.filter(is_active=True, parent__isnull=True)
+        category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        categories = category.get_descendants(include_self=True)
+        return Product.objects.filter(
+            category__in=categories
+        ).prefetch_related('images')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = get_object_or_404(
+            Category, slug=self.kwargs['slug']
+        )
+        return context
+    
+
+class BrandView(ListView):
+    template_name = 'pages/brand.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        brand = get_object_or_404(Brand, slug=self.kwargs['slug'])
+        
+        return Product.objects.filter(
+            car_models__brand=brand,
+        ).distinct().prefetch_related('images')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['brands'] = Brand.objects.all()[:8]
+        context['brand'] = get_object_or_404(
+            Brand, slug=self.kwargs['slug']
+        )
+        return context
     
 
 class ProductListView(ListView):

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<h2 class="text-center">Здорова ребята, это КАТЕГОРИЯ!</h2>
+
+<div class="container mt-5 text-center">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-3">
+            {% if product.get_main_image %}
+            <img src="{{product.get_main_image.image.url}}" width="300px">
+            {% endif %}
+            <h4>{{product.name}}</h4>
+            <p>{{product.price}} сом</p>
+        </div>
+        {% empty %}
+        <h3>Нет товаров у данной категории</h3>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

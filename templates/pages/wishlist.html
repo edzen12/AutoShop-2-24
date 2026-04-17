@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "includes/header.html" %}
+
+<div class="container">
+    <h2>Избранное</h2>
+    <div class="row">
+        {% for item in wishlist.items.all %}
+        <div class="col-lg-4">
+            <p>{{item.product.name}}</p>
+            <img width='300px' src='{{item.product.get_main_image.image.url}}'>
+        </div>
+        {% empty %}
+            <p>Пусто</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
