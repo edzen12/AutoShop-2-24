@@ -69,6 +69,7 @@ class HomeView(TemplateView):
         context['products'] = Product.objects.filter(is_available=True)[:8]
         context['partners'] = Partner.objects.all()
         context['sliders'] = Slider.objects.all()
+        context['brands'] = Brand.objects.all()[:8]
         context['posts'] = (
             Post.objects.prefetch_related('tags')
         )

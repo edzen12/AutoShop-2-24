@@ -52,6 +52,12 @@ class AttributeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
+
+@admin.register(CarModel)
+class CarModelAdmin(admin.ModelAdmin):
+    list_display = ('name',) 
+
+
 @admin.register(AttributeValue)
 class AttributeValueAdmin(admin.ModelAdmin):
     list_display = ('attribute','value')

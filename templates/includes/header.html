@@ -41,8 +41,6 @@
                         <ul>
                             <li><a href="login.html">Register</a></li>
                             <li><a href="login.html">login</a></li>
-                            <li><a href="cart.html">Shopping Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
                         </ul>
                     </div> 
                     <div class="search_container">
@@ -120,8 +118,6 @@
                             <ul>
                                 <li><a href="login.html">Register</a></li>
                                 <li><a href="login.html">login</a></li>
-                                <li><a href="cart.html">Shopping Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
                             </ul>
                         </div>   
                     </div>
@@ -221,7 +217,7 @@
                                                 <a href="{% url "cart_detail" %}">Посмотреть корзину</a>
                                             </div>
                                             <div class="cart_button">
-                                                <a class="active" href="checkout.html">Checkout</a>
+                                                <a class="active" href="#">Оплатить</a>
                                             </div>
 
                                         </div>
@@ -247,119 +243,33 @@
                             </div>
                             <div class="categories_menu_toggle">
                                 <ul>
-                                    <li class="menu_item_children"><a href="index.html#">Brake Parts <i class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu">
-                                            <li class="menu_item_children"><a href="index.html#">Dresses</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Sweater</a></li>
-                                                    <li><a href="index.html">Evening</a></li>
-                                                    <li><a href="index.html">Day</a></li>
-                                                    <li><a href="index.html">Sports</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">Handbags</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Shoulder</a></li>
-                                                    <li><a href="index.html">Satchels</a></li>
-                                                    <li><a href="index.html">kids</a></li>
-                                                    <li><a href="index.html">coats</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">shoes</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Ankle Boots</a></li>
-                                                    <li><a href="index.html">Clog sandals </a></li>
-                                                    <li><a href="index.html">run</a></li>
-                                                    <li><a href="index.html">Books</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">Clothing</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Coats  Jackets </a></li>
-                                                    <li><a href="index.html">Raincoats</a></li>
-                                                    <li><a href="index.html">Jackets</a></li>
-                                                    <li><a href="index.html">T-shirts</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu_item_children"><a href="index.html#"> Wheels & Tires  <i class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu column_3">
-                                            <li class="menu_item_children"><a href="index.html#">Chair</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Dining room</a></li>
-                                                    <li><a href="index.html">bedroom</a></li>
-                                                    <li><a href="index.html"> Home & Office</a></li>
-                                                    <li><a href="index.html">living room</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">Lighting</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Ceiling Lighting</a></li>
-                                                    <li><a href="index.html">Wall Lighting</a></li>
-                                                    <li><a href="index.html">Outdoor Lighting</a></li>
-                                                    <li><a href="index.html">Smart Lighting</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">Sofa</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Fabric Sofas</a></li>
-                                                    <li><a href="index.html">Leather Sofas</a></li>
-                                                    <li><a href="index.html">Corner Sofas</a></li>
-                                                    <li><a href="index.html">Sofa Beds</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu_item_children"><a href="index.html#"> Furnitured & Decor <i class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu column_2">
-                                            <li class="menu_item_children"><a href="index.html#">Brake Tools</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Driveshafts</a></li>
-                                                    <li><a href="index.html">Spools</a></li>
-                                                    <li><a href="index.html">Diesel </a></li>
-                                                    <li><a href="index.html">Gasoline</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">Emergency Brake</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Dolls for Girls</a></li>
-                                                    <li><a href="index.html">Girls' Learning Toys</a></li>
-                                                    <li><a href="index.html">Arts and Crafts for Girls</a></li>
-                                                    <li><a href="index.html">Video Games for Girls</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu_item_children"><a href="index.html#"> Turbo System <i class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu column_2">
-                                            <li class="menu_item_children"><a href="index.html#">Check Trousers</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Building</a></li>
-                                                    <li><a href="index.html">Electronics</a></li>
-                                                    <li><a href="index.html">action figures </a></li>
-                                                    <li><a href="index.html">specialty & boutique toy</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="index.html#">Calculators</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="index.html">Dolls for Girls</a></li>
-                                                    <li><a href="index.html">Girls' Learning Toys</a></li>
-                                                    <li><a href="index.html">Arts and Crafts for Girls</a></li>
-                                                    <li><a href="index.html">Video Games for Girls</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="index.html#"> Lighting</a></li>
-                                    <li><a href="index.html#"> Accessories</a></li>
-                                    <li><a href="index.html#">Body Parts</a></li>
-                                    <li><a href="index.html#">Networking</a></li>
-                                    <li><a href="index.html#">Perfomance Filters</a></li>
-                                    <li><a href="index.html#"> Engine Parts</a></li>
-                                    <li class="hidden"><a href="https://htmldemo.net/mazlay/mazlay/shop-left-sidebar.html">New Sofas</a></li>
-                                    <li class="hidden"><a href="https://htmldemo.net/mazlay/mazlay/shop-left-sidebar.html">Sleight Sofas</a></li>
-                                    <li><a href="index.html#" id="more-btn"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
+                                    {% for category in categories %} 
+                                    <li class="
+                                            {% if category.get_children.exists %}menu_item_children{% endif %}
+                                            {% if forloop.counter > category_limit %}hidden{% endif %}">
+                                        <a href="{% url "category" category.slug %}">
+                                        {{category.name}} 
+                                        {% if category.get_children.exists %} 
+                                        <i class="fa fa-angle-right"></i> 
+                                        {% endif %} 
+                                        </a> 
+                                        {% if category.get_children.exists %} 
+                                            <ul class="categories_mega_menu"> 
+                                            {% for child in category.get_children %} 
+                                                <li class="menu_item_children">
+                                                <a href="#">{{child.name}}</a>
+                                            </li> 
+                                            {% endfor %} 
+                                            </ul> 
+                                        {% endif %}
+                                    </li> 
+                                    {% endfor %} 
+                                    {% if categories|length > category_limit %} 
+                                    <li>
+                                        <a href="#" id="more-btn">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Еще категории </a>
+                                    </li> 
+                                    {% endif %} 
                                 </ul>
                             </div>
                         </div>
@@ -443,15 +353,15 @@
             <div class="col-12">
                 <div class="tags_content">
                     <ul>
-                        <li><span>Top Tags:</span></li>
-                        <li><a href="index.html#">Wheels & Tires</a></li>
-                        <li><a href="index.html#">Lighting & lamp</a></li>
-                        <li><a href="index.html#">Body Parts</a></li>
-                        <li><a href="index.html#">Smart Devices</a></li>
-                        <li><a href="index.html#">Devices</a></li>
-                        <li><a href="index.html#">Repair Parts</a></li>
-                        <li><a href="index.html#">Car Engine</a></li>
-                        <li><a href="index.html#">Accessories</a></li>
+                        <li><span>Бренды:</span></li>
+                        {% for brand in brands %}
+                        <li>
+                            <a href="">
+                                <img width='30px' src="{{brand.logo.url}}">
+                                {{brand.name}}
+                            </a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
