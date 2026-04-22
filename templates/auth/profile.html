@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Личный кабинет</h2>
+    <p>Имя: {{request.user.username}}</p>
+    <p>Email: {{request.user.email}}</p>
+    <a href="{% url 'profile_edit' %}">Редактировать</a>
+    <a href="{% url 'logout' %}">Выйти</a>
+</div>
+
+{% endblock content %}

@@ -1,5 +1,5 @@
 <!--header area start-->
-
+{% load i18n %}
 <!--offcanvas menu area start-->
 <div class="off_canvars_overlay">
             
@@ -21,11 +21,27 @@
                     </div>
                     <div class="header_account">
                         <ul>
-                            <li class="language"><a href="index.html#"><img src="assets/img/logo/language.png" alt=""> english <i class="ion-chevron-down"></i></a>
+                            <li class="language">
+                                <a href="#">
+                                    <img width='40px' src="https://cdn-icons-png.flaticon.com/512/3898/3898150.png"> 
+                                    {{ LANGUAGE_CODE }} 
+                                    <i class="ion-chevron-down"></i>
+                                </a>
                                 <ul class="dropdown_language">
-                                    <li><a href="index.html#">English</a></li>
-                                    <li><a href="index.html#">Germany</a></li>
-                                    <li><a href="index.html#">Japanese</a></li>
+                                <li class='mt-1'>
+                                    <form action='{% url "set_language" %}' method='post'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='language' value='ru'>
+                                        <button class='btn btn-success' type='submit'>Русский</button>
+                                    </form>
+                                </li>
+                                <li class='mt-1 mb-1'>
+                                    <form action='{% url "set_language" %}' method='post'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='language' value='en'>
+                                        <button class='btn btn-warning' type='submit'>English</button>
+                                    </form>
+                                </li>
                                 </ul>
                             </li>
                             <li class="currency"><a href="index.html#">USD <i class="ion-chevron-down"></i></a>
@@ -39,8 +55,13 @@
                     </div>
                     <div class="header_top_links">
                         <ul>
-                            <li><a href="login.html">Register</a></li>
-                            <li><a href="login.html">login</a></li>
+                            {% if request.user.is_authenticated %}
+                                <li><a href="{% url "profile" %}">Кабинет</a></li>
+                                <li><a href="{% url "logout" %}">Выйти</a></li> 
+                            {% else %}
+                                <li><a href="{% url "register" %}">Регистрация</a></li>
+                                <li><a href="{% url "login" %}">Логин</a></li> 
+                            {% endif %}
                         </ul>
                     </div> 
                     <div class="search_container">
@@ -116,8 +137,13 @@
                     <div class="col-lg-8 col-md-7">
                         <div class="header_top_links text-right">
                             <ul>
-                                <li><a href="login.html">Register</a></li>
-                                <li><a href="login.html">login</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li><a href="{% url "profile" %}">Кабинет</a></li>
+                                    <li><a href="{% url "logout" %}">Выйти</a></li> 
+                                {% else %}
+                                    <li><a href="{% url "register" %}">Регистрация</a></li>
+                                    <li><a href="{% url "login" %}">Логин</a></li> 
+                                {% endif %}
                             </ul>
                         </div>   
                     </div>

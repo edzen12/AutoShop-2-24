@@ -1,4 +1,6 @@
 asgiref==3.11.1
 Django==6.0.2
+django-js-asset==3.1.2
+django-mptt==0.18.0
 pillow==12.1.1
 sqlparse==0.5.5
