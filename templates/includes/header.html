@@ -16,14 +16,14 @@
                             <a href="javascript:void(0)"><i class="ion-android-close"></i></a>  
                     </div>
                     <div class="call_support">
-                        <p><i class="icon-phone-call" aria-hidden="true"></i> <span>Call us: <a href="tel:0123456789">0123456789</a></span></p>
+                        <p><i class="icon-phone-call" aria-hidden="true"></i> <span>{% trans "Позвонить" %}: <a href="tel:0123456789">0123456789</a></span></p>
 
                     </div>
                     <div class="header_account">
                         <ul>
                             <li class="language">
                                 <a href="#">
-                                    <img width='40px' src="https://cdn-icons-png.flaticon.com/512/3898/3898150.png"> 
+                                    <img width='40px' src="https://di-ci.ru/images/new/unnamed%20(1).png"> 
                                     {{ LANGUAGE_CODE }} 
                                     <i class="ion-chevron-down"></i>
                                 </a>
@@ -56,38 +56,35 @@
                     <div class="header_top_links">
                         <ul>
                             {% if request.user.is_authenticated %}
-                                <li><a href="{% url "profile" %}">Кабинет</a></li>
-                                <li><a href="{% url "logout" %}">Выйти</a></li> 
+                                <li><a href="{% url "profile" %}">{% trans "Кабинет" %}</a></li>
+                                <li><a href="{% url "logout" %}">{% trans "Выйти" %}</a></li> 
                             {% else %}
-                                <li><a href="{% url "register" %}">Регистрация</a></li>
-                                <li><a href="{% url "login" %}">Логин</a></li> 
+                                <li><a href="{% url "register" %}">{% trans "Регистрация" %}</a></li>
+                                <li><a href="{% url "login" %}">{% trans "Логин" %}</a></li> 
                             {% endif %}
                         </ul>
                     </div> 
                     <div class="search_container">
                         <form action="{% url "search" %}" method='get'>
                             <div class="search_box">
-                                <input placeholder="Поиск товара..." name='q' type="text">
-                                <button type="submit">Поиск</button> 
+                                <input placeholder="{% trans "Поиск товара" %}..." name='q' type="text">
+                                <button type="submit">{% trans "Поиск" %}</button> 
                             </div>
                         </form>
                     </div> 
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
                             <li class="menu-item-has-children active">
-                                <a href="{% url "home" %}">Главная</a>
+                                <a href="{% url "home" %}">{% trans "Главная" %}</a>
                             </li> 
                             <li class="menu-item-has-children">
-                                <a href="{% url "blog" %}">Блог</a>
-                            </li> 
+                                <a href="{% url "blog" %}">{% trans "Блог" %}</a>
+                            </li>  
                             <li class="menu-item-has-children">
-                                <a href="my-account.html">my account</a>
+                                <a href="{% url "about" %}">{% trans "О нас" %}</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="{% url "about" %}">О нас</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="{% url "contact" %}">Контакты</a> 
+                                <a href="{% url "contact" %}">{% trans "Контакты" %}</a> 
                             </li>
                         </ul>
                     </div>
@@ -117,11 +114,29 @@
                     <div class="col-lg-4 col-md-5">
                         <div class="header_account">
                             <ul>
-                                <li class="language"><a href="index.html#"><img src="assets/img/logo/language.png" alt=""> english <i class="ion-chevron-down"></i></a>
+                                <li class="language">
+                                    <a href="#">
+                                        <img width='40px' src="https://di-ci.ru/images/new/unnamed%20(1).png"> 
+                                        {{ LANGUAGE_CODE }} 
+                                        <i class="ion-chevron-down"></i>
+                                    </a>
                                     <ul class="dropdown_language">
-                                        <li><a href="index.html#">English</a></li>
-                                        <li><a href="index.html#">Germany</a></li>
-                                        <li><a href="index.html#">Japanese</a></li>
+                                    <li class='mt-1'>
+                                        <form action='{% url "set_language" %}' method='post'>
+                                            {% csrf_token %}
+                                            <input type='hidden' name='language' value='ru'>
+                                            <button class='btn {% if LANGUAGE_CODE == 'ru' %} btn-danger {% else %} btn-outline-danger {% endif %}' type='submit'>
+                                                Русский</button>
+                                        </form>
+                                    </li>
+                                    <li class='mt-1 mb-1'>
+                                        <form action='{% url "set_language" %}' method='post'>
+                                            {% csrf_token %}
+                                            <input type='hidden' name='language' value='en'>
+                                            <button class='btn {% if LANGUAGE_CODE == 'en' %} btn-danger {% else %} btn-outline-danger {% endif %}' type='submit'>
+                                                English</button>
+                                        </form>
+                                    </li>
                                     </ul>
                                 </li>
                                 <li class="currency"><a href="index.html#">USD <i class="ion-chevron-down"></i></a>
@@ -138,11 +153,11 @@
                         <div class="header_top_links text-right">
                             <ul>
                                 {% if request.user.is_authenticated %}
-                                    <li><a href="{% url "profile" %}">Кабинет</a></li>
-                                    <li><a href="{% url "logout" %}">Выйти</a></li> 
+                                    <li><a href="{% url "profile" %}">{% trans "Кабинет" %}</a></li>
+                                    <li><a href="{% url "logout" %}">{% trans "Выйти" %}</a></li> 
                                 {% else %}
-                                    <li><a href="{% url "register" %}">Регистрация</a></li>
-                                    <li><a href="{% url "login" %}">Логин</a></li> 
+                                    <li><a href="{% url "register" %}">{% trans "Регистрация" %}</a></li>
+                                    <li><a href="{% url "login" %}">{% trans "Логин" %}</a></li> 
                                 {% endif %}
                             </ul>
                         </div>   
@@ -168,8 +183,8 @@
                             <div class="search_container">
                                 <form action="{% url "search" %}" method='get'> 
                                     <div class="search_box">
-                                        <input placeholder="Поиск товара..." name='q' type="text">
-                                        <button type="submit">Поиск</button> 
+                                        <input placeholder="{% trans "Поиск товара" %}..." name='q' type="text">
+                                        <button type="submit">{% trans "Поиск" %}</button> 
                                     </div>
                                 </form>
                             </div>
@@ -186,7 +201,7 @@
                                     <a href="javascript:void(0)">
                                         <i class="icon-shopping-bag2"></i>
                                         {% if cart.total_price %}
-                                        <span class="cart_price">{{cart.total_price}} сом
+                                        <span class="cart_price">{{cart.total_price}} {% trans "сом" %}
                                             <i class="ion-ios-arrow-down"></i></span>
                                         {% endif %}
                                         {% if cart.total_quantity > 0 %}
@@ -198,7 +213,7 @@
                                         <div class="mini_cart_inner">
                                             <div class="cart_close">
                                                 <div class="cart_text">
-                                                    <h3>Корзина</h3>
+                                                    <h3>{% trans "Корзина" %}</h3>
                                                 </div>
                                                 <div class="mini_cart_close">
                                                     <a href="javascript:void(0)"><i class="icon-x"></i></a>
@@ -213,8 +228,8 @@
                                                 </div>
                                                 <div class="cart_info">
                                                     <a href="#">{{item.product.name}}</a>
-                                                    <p>Кол-во: {{item.quantity}} X 
-                                                        <span> {{item.price}} сом </span>
+                                                    <p>{% trans "Кол-во" %}: {{item.quantity}} X 
+                                                        <span> {{item.price}} {% trans "сом" %} </span>
                                                     </p>    
                                                 </div>
                                                 <div class="cart_remove">
@@ -228,22 +243,22 @@
                                                 </div>
                                             </div>
                                             {% empty %}
-                                            <p>Корзина пуста</p>
+                                            <p>{% trans "Корзина пуста" %}</p>
                                             {% endfor %}
                                             
                                             <div class="mini_cart_table">
                                                 <div class="cart_total mt-10">
-                                                    <span>Общая стоимость:</span>
+                                                    <span>{% trans "Общая стоимость" %}:</span>
                                                     <span class="price">{{cart.total_price}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mini_cart_footer">
                                             <div class="cart_button">
-                                                <a href="{% url "cart_detail" %}">Посмотреть корзину</a>
+                                                <a href="{% url "cart_detail" %}">{% trans "Посмотреть корзину" %}</a>
                                             </div>
                                             <div class="cart_button">
-                                                <a class="active" href="#">Оплатить</a>
+                                                <a class="active" href="#">{% trans "Оплатить" %}</a>
                                             </div>
 
                                         </div>
@@ -265,7 +280,7 @@
                     <div class=" col-lg-3">
                         <div class="categories_menu">
                             <div class="categories_title">
-                                <h2 class="categori_toggle">ALL CATEGORIES</h2>
+                                <h2 class="categori_toggle">{% trans "Все категории" %}</h2>
                             </div>
                             <div class="categories_menu_toggle">
                                 <ul>
@@ -293,7 +308,7 @@
                                     {% if categories|length > category_limit %} 
                                     <li>
                                         <a href="#" id="more-btn">
-                                            <i class="fa fa-plus" aria-hidden="true"></i> Еще категории </a>
+                                            <i class="fa fa-plus" aria-hidden="true"></i> {% trans "Еще категории" %} </a>
                                     </li> 
                                     {% endif %} 
                                 </ul>
@@ -304,64 +319,17 @@
                         <div class="main_menu menu_position text-left"> 
                             <nav>  
                                 <ul>
-                                    <li><a class="active"  href="{% url "home" %}">Главная</a></li>
-                                    <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a> 
-                                        <div class="mega_menu">
-                                            <ul class="mega_menu_inner">
-                                                <li><a href="index.html#">Shop Layouts</a>
-                                                    <ul>
-                                                        <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                        <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                                        <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
-                                                        <li><a href="shop-list.html">List View</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="index.html#">other Pages</a>
-                                                    <ul>
-                                                        <li><a href="cart.html">cart</a></li>
-                                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                        <li><a href="my-account.html">my account</a></li>
-                                                        <li><a href="404.html">Error 404</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="index.html#">Product Types</a>
-                                                    <ul>
-                                                        <li><a href="product-details.html">product details</a></li>
-                                                        <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                        <li><a href="product-grouped.html">product grouped</a></li>
-                                                        <li><a href="variable-product.html">product variable</a></li>
-                                                        <li><a href="product-countdown.html">product countdown</a></li>
-
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="{% url "blog" %}">Блог</a></li>
-                                    <li><a href="index.html#">pages <i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu pages">
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="faq.html">Frequently Questions</a></li>
-                                            <li><a href="contact.html">contact</a></li>
-                                            <li><a href="login.html">login</a></li>
-                                            <li><a href="404.html">Error 404</a></li>
-                                            <li><a href="compare.html">compare</a></li>
-                                            <li><a href="privacy-policy.html">privacy policy</a></li>
-                                            <li><a href="coming-soon.html">coming soon</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="{% url "about" %}">О нас</a></li>
-                                    <li><a href="{% url "contact" %}">Контакты</a></li>
+                                    <li><a class="active"  href="{% url "home" %}">{% trans "Главная" %}</a></li>
+                                    <li><a href="{% url "blog" %}">{% trans "Блог" %}</a></li>
+                                    <li><a href="{% url "about" %}">{% trans "О нас" %}</a></li>
+                                    <li><a href="{% url "contact" %}">{% trans "Контакты" %}</a></li>
                                 </ul>  
                             </nav> 
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="call_support text-right">
-                            <p><i class="icon-phone-call" aria-hidden="true"></i> <span>Call us:  <a href="tel:0123456789">0123456789</a></span></p>
+                            <p><i class="icon-phone-call" aria-hidden="true"></i> <span>{% trans "Позвонить" %}:  <a href="tel:0123456789">0123456789</a></span></p>
                         </div>
                     </div>
                 </div>
@@ -379,7 +347,7 @@
             <div class="col-12">
                 <div class="tags_content">
                     <ul>
-                        <li><span>Бренды:</span></li>
+                        <li><span>{% trans "Бренды" %}:</span></li>
                         {% for brand in brands %}
                         <li>
                             <a href="">

@@ -1,14 +1,15 @@
 from django.contrib import admin
 from apps.product.models import *
+from modeltranslation.admin import TranslationAdmin
 from mptt.admin import DraggableMPTTAdmin
 from django.utils.html import format_html
 
 admin.site.register(Slider)
 
 @admin.register(Category)
-class CategoryAdmin(DraggableMPTTAdmin):
-    list_display = ('tree_actions', 'something', 'is_active')
-    list_display_links=('something',)
+class CategoryAdmin(TranslationAdmin, DraggableMPTTAdmin):
+    list_display = ('id', 'tree_actions', 'something', 'is_active')
+    list_display_links=('id', 'something',)
     list_filter = ('is_active',)
     search_fields = ('name',)
     mptt_level_indent = 20
@@ -37,7 +38,7 @@ class ProductVariantInline(admin.TabularInline):
     show_change_link = True
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TranslationAdmin, admin.ModelAdmin):
     list_display = (
         'name', 'category',  'price', 'stock', 
         'is_available', 'created_at'
